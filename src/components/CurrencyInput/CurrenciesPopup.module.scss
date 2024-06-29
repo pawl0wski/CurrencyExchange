@@ -1,0 +1,20 @@
+@import "../../styles/mixins";
+
+div.currenciesPopup {
+  @include main-block;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.12);
+  width: 15rem;
+  padding: 0.5rem 1rem;
+  background-color: white;
+}
+
+hr {
+  border-color: transparentize(black, 0.80);
+  margin: 0.5rem 0;
+}
+
+div.currenciesList {
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}

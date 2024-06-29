@@ -1,0 +1,38 @@
+@import "../../styles/variables";
+
+div.currencyEntry {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  user-select: none;
+  cursor: pointer;
+
+  p {
+    margin: 0;
+  }
+
+  &:hover {
+    background-color: $primary-color-background;
+  }
+}
+
+div.favoriteIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  padding: 0.25rem;
+  aspect-ratio: 1/1;
+  margin-left: auto;
+
+  cursor: pointer;
+
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: transparentize($primary-color, 0.4);
+    color: white;
+  }
+}
