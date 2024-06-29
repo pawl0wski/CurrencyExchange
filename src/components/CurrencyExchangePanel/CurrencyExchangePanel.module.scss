@@ -1,0 +1,10 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+div.currencyExchangePanel {
+  @include main-block;
+
+  width: 100%;
+  height: 20rem;
+  background-color: $primary-color-background;
+}
