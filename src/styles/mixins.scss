@@ -1,10 +1,28 @@
 @import "variables";
 
 @mixin main-block{
+  @include main-block-radius;
+
   background-color: $primary-color-background;
 
   border-color: $primary-color-border;
   border-style: solid;
-  border-radius: 21px;
   border-width: 2px;
+}
+
+@mixin main-block-radius {
+  border-radius: 21px;
+}
+
+@mixin main-input {
+  background-color: white;
+  font-family: "Montserrat", sans-serif;
+  border-color: lightgray;
+  border-width: 1.5px;
+
+  font-size: medium;
+  padding: 0.5rem 1rem;
+
+  border-radius: 10px;
+  border-style: solid;
 }
