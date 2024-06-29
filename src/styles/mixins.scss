@@ -1,0 +1,10 @@
+@import "variables";
+
+@mixin main-block{
+  background-color: $primary-color-background;
+
+  border-color: $primary-color-border;
+  border-style: solid;
+  border-radius: 21px;
+  border-width: 2px;
+}
