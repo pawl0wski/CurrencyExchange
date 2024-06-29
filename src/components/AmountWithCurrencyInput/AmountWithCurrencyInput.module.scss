@@ -1,5 +1,19 @@
+@import "../../styles/variables";
+
 div.amountWithCurrency {
   display: flex;
   flex-direction: row;
   gap: 3rem;
+}
+
+div.amountInput, div.currencyInput {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-size: smaller;
+    color: $muted-text-color;
+    margin-left: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
 }
