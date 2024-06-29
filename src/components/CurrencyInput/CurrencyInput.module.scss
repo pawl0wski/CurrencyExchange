@@ -1,0 +1,17 @@
+@import "../../styles/mixins";
+
+div.currencyInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  width: 10rem;
+  cursor: pointer;
+  @include main-input;
+
+  p {
+    width: 100%;
+    font-size: medium;
+    margin: 0;
+  }
+}
