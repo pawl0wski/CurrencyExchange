@@ -1,0 +1,21 @@
+div.amountInput {
+  display: flex;
+  flex-direction: row;
+}
+
+input.amount {
+  width: calc(100% - 4rem);
+
+  border-top-right-radius: unset;
+  border-bottom-right-radius: unset;
+}
+
+input.currency {
+  width: 4rem;
+  font-weight: bold;
+  padding: 0.5rem;
+
+  border-top-left-radius: unset;
+  border-bottom-left-radius: unset;
+  border-left: unset;
+}
