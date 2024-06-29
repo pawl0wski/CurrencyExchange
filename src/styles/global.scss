@@ -1,4 +1,5 @@
 @import "mixins";
+@import "variables";
 
 *{
   box-sizing: border-box;
@@ -14,4 +15,20 @@ p, div {
 
 input, select {
   @include main-input;
+}
+
+button {
+  border-radius: 5px;
+
+  background-color: $primary-color;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  padding: 0.25rem 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
 }
