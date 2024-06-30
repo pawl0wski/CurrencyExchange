@@ -1,4 +1,5 @@
 export default interface Currency {
     code: string,
-    name: string
+    name: string,
+    favorite: boolean
 }
