@@ -1,7 +1,7 @@
 import {MdKeyboardArrowDown} from "react-icons/md"
 import styles from "./CurrencyInput.module.scss"
 import CurrenciesPopup from "./CurrenciesPopup.tsx";
-import {useState} from "react";
+import { useState } from "react";
 import {
     useFloating,
     autoUpdate,
@@ -12,8 +12,14 @@ import {
     FloatingFocusManager
 } from "@floating-ui/react";
 import CurrencyFlag from "../CurrencyFlag/CurrencyFlag.tsx";
+import Currency from "../../types/currency.ts";
 
-export default function CurrencyInput() {
+interface CurrencyInputProps {
+    currency: Currency | null,
+    onCurrencyChange: (currency: Currency) => void,
+}
+
+export default function CurrencyInput(props: CurrencyInputProps) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const {refs, floatingStyles, context} = useFloating({
@@ -35,10 +41,10 @@ export default function CurrencyInput() {
     return <>
         <div ref={refs.setReference} className={styles.currencyInput} {...getReferenceProps()} >
             <div className={styles.countryFlag}>
-                <CurrencyFlag currencyCode="PLN" />
+                <CurrencyFlag currencyCode={props.currency?.code ?? ""} />
             </div>
             <p>
-                Polski złoty
+                {props.currency?.name ?? "Wybierz walute"}
             </p>
             <MdKeyboardArrowDown/>
         </div>
@@ -47,7 +53,7 @@ export default function CurrencyInput() {
             ref={refs.setFloating}
             style={floatingStyles}
                 {...getFloatingProps()}>
-                <CurrenciesPopup />
+                <CurrenciesPopup currency={props.currency} onCurrencyChanged={props.onCurrencyChange}  />
 
             </div>
         </FloatingFocusManager>}
