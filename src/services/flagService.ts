@@ -1,18 +1,14 @@
-interface FlagApiResponse {
-    flags: {
-        png: string
-    }
+import flagsJson from "../assets/flags.json";
+
+interface Flags {
+    [key: string]: string | null
 }
 
-export async function getFlagUrl(currencyCode: string) : Promise<string> {
-    const response = await fetch(`https://restcountries.com/v3.1/currency/${currencyCode}`)
+const flags: Flags = flagsJson;
 
-    if (response.ok) {
-        const apiResponses : FlagApiResponse[] =  await response.json()
-        const firstApiResponse = apiResponses[0];
-
-        return firstApiResponse.flags.png;
+export async function getFlagUrl(currencyCode: string) : Promise<string | null> {
+    if (currencyCode in flags) {
+        return flags[currencyCode];
     }
-
-    throw new Error(response.statusText);
+    return null;
 }
