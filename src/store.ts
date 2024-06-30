@@ -1,13 +1,13 @@
 import {configureStore} from "@reduxjs/toolkit";
 import exchangeReducer, { ExchangeSliceState } from "./slices/exchangeSlice.ts";
 import currenciesReducer, {CurrenciesSliceState} from "./slices/currenciesSlice.ts";
+import currenciesRatesReducer, { CurrenciesRatesSliceState } from "./slices/currenciesRatesSlice.ts";
 
 export interface RootStoreState {
     exchange: ExchangeSliceState,
-    currencies: CurrenciesSliceState
+    currencies: CurrenciesSliceState,
+    currenciesRates: CurrenciesRatesSliceState,
 }
-
-
 
 function saveState(state: RootStoreState) {
     const serializedState = JSON.stringify(state)
@@ -30,6 +30,7 @@ const store =  configureStore({
     reducer: {
         exchange: exchangeReducer,
         currencies: currenciesReducer,
+        currenciesRates: currenciesRatesReducer,
     }
 })
 

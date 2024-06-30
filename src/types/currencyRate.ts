@@ -1,6 +1,4 @@
-import Currency from "./currency.ts";
-
 export default interface CurrencyRate {
-    currency: Currency,
+    code: string,
     rate: number
 }

@@ -3,13 +3,24 @@ import AmountWithCurrency from "../AmountWithCurrency/AmountWithCurrency.tsx";
 import { useDispatch, useSelector } from "react-redux";
 import { RootStoreState } from "../../store.ts";
 import Currency from "../../types/currency.ts";
-import { setFromAmount, setFromCurrency, setToCurrency } from "../../slices/exchangeSlice.ts";
+import { setFromAmount, setFromCurrency, setToAmount, setToCurrency } from "../../slices/exchangeSlice.ts";
+import { useEffect } from "react";
+import { calculateAmount } from "../../utils/calculateAmount.ts";
+import CurrencyRates from "../../types/currencyRates.ts";
 
 export default function CurrencyExchangePanel() {
     const fromAmount = useSelector<RootStoreState, number>(state => state.exchange.fromAmount)
     const fromCurrency = useSelector<RootStoreState, Currency | null>(state => state.exchange.from)
     const toAmount = useSelector<RootStoreState, number>(state => state.exchange.toAmount)
     const toCurrency = useSelector<RootStoreState, Currency | null>(state => state.exchange.to)
+    const currencyRates = useSelector<RootStoreState, CurrencyRates | null>(state => state.currenciesRates.currencyRates);
+
+    useEffect(() => {
+        if (currencyRates !== null && (fromCurrency !== null && toCurrency !== null)) {
+            const toAmount = calculateAmount(fromAmount, fromCurrency, toCurrency, currencyRates)
+            dispatcher(setToAmount(toAmount))
+        }
+    }, [fromCurrency, fromAmount, toCurrency]);
 
     const dispatcher = useDispatch();
 
@@ -31,8 +42,8 @@ export default function CurrencyExchangePanel() {
             onAmountChange={() => {}}
         />
         <hr className={styles.buttonSeparator} />
-        <button className={styles.calculateButton} >
-            Oblicz
+        <button className={styles.saveButton} >
+            Zapisz
         </button>
     </div>;
 }

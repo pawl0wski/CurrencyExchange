@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateCurrencies } from "./slices/currenciesSlice.ts";
 import { RootStoreState } from "./store.ts";
 import Currency from "./types/currency.ts";
+import { getCurrenciesRateFromApi } from "./services/currenciesRateService.ts";
+import { updateCurrencyRates } from "./slices/currenciesRatesSlice.ts";
 
 function App() {
     const dispatch = useDispatch();
@@ -17,6 +19,10 @@ function App() {
         if (currencies.length === 0 )
             getCurrenciesFromApi().then((currencies) => {
                 dispatch(updateCurrencies(currencies))
+            })
+
+            getCurrenciesRateFromApi().then((currenciesRate) => {
+                dispatch(updateCurrencyRates(currenciesRate))
             })
     }, []);
 

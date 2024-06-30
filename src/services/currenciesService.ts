@@ -1,6 +1,6 @@
 import Currency from "../types/currency.ts";
+import { withApiKey } from "../utils/withApiKey.ts";
 
-const ApiKey: string = import.meta.env.VITE_EXCHANGERATESAPI_KEY;
 
 interface CurrenciesApiResponse {
     success: boolean,
@@ -10,12 +10,8 @@ interface CurrenciesApiResponse {
         }
 }
 
-function addApiKeyToUrl(url: string): string {
-    return url + `?access_key=${ApiKey}`;
-}
-
 export async function getCurrenciesFromApi(): Promise<Currency[]> {
-    const response = await fetch(addApiKeyToUrl("http://api.exchangeratesapi.io/v1/symbols")
+    const response = await fetch(withApiKey("http://api.exchangeratesapi.io/v1/symbols")
         , { method: "GET" });
 
     const responseData: CurrenciesApiResponse = await response.json();
