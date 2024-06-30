@@ -11,7 +11,7 @@ export default function CurrencyFlag(props: CurrencyFlagProps) {
     const [flagUrl, setFlagUrl] = useState<string | null>(null);
 
     useEffect(() => {
-        getFlagUrl(props.currencyCode).then(r => setFlagUrl(r));
+        setFlagUrl(getFlagUrl(props.currencyCode));
     }, [props.currencyCode]);
 
     return <div className={styles.currencyFlag}>

@@ -6,7 +6,7 @@ interface Flags {
 
 const flags: Flags = flagsJson;
 
-export async function getFlagUrl(currencyCode: string) : Promise<string | null> {
+export function getFlagUrl(currencyCode: string) : string | null {
     if (currencyCode in flags) {
         return flags[currencyCode];
     }
