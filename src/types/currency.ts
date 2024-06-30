@@ -1,4 +1,4 @@
 export default interface Currency {
-    symbol: string,
+    code: string,
     name: string
 }
