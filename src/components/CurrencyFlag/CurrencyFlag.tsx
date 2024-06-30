@@ -12,7 +12,7 @@ export default function CurrencyFlag(props: CurrencyFlagProps) {
 
     useEffect(() => {
         getFlagUrl(props.currencyCode).then(r => setFlagUrl(r));
-    }, []);
+    }, [props.currencyCode]);
 
     return <div className={styles.currencyFlag}>
         {
