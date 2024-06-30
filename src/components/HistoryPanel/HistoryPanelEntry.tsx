@@ -12,7 +12,9 @@ export default function HistoryPanelEntry(props: HistoryPanelEntryProps) {
 
     return <div className={styles.historyPanelEntry}>
         <div className={styles.historyPanelFrom}>
-            <CurrencyFlag currencyCode={historyEntry.from.code} />
+            <div className={styles.currencyFlag}>
+                <CurrencyFlag currencyCode={historyEntry.from.code} />
+            </div>
             <p>
                 {historyEntry.fromAmount}
             </p>
@@ -20,10 +22,13 @@ export default function HistoryPanelEntry(props: HistoryPanelEntryProps) {
                 {historyEntry.from.code}
             </p>
         </div>
-
-        <MdArrowRightAlt />
+        <div className={styles.arrow}>
+            <MdArrowRightAlt />
+        </div>
         <div className={styles.historyPanelTo}>
-            <CurrencyFlag currencyCode={historyEntry.to.code} />
+            <div className={styles.currencyFlag}>
+                <CurrencyFlag currencyCode={historyEntry.to.code} />
+            </div>
             <p>
                 {historyEntry.toAmount}
             </p>

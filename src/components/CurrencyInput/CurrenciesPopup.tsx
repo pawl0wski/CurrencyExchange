@@ -7,7 +7,7 @@ import Currency from "../../types/currency.ts";
 export default function CurrenciesPopup() {
     const [searchText, setSearchText] = useState("");
 
-    const tempCurrencies: Currency[] = [{name: "Polish Złoty", symbol: "PLN"}, {name: "Japoński jen", symbol: "JPY"}];
+    const tempCurrencies: Currency[] = [{name: "Polish Złoty", code: "PLN"}, {name: "Japoński jen", code: "JPY"}];
 
     const getFilteredCurrencies =
         () => tempCurrencies.filter(

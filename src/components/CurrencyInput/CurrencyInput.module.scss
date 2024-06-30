@@ -5,7 +5,7 @@ div.currencyInput {
   flex-direction: row;
   align-items: center;
 
-  width: 10rem;
+  width: 12rem;
   cursor: pointer;
   @include main-input;
 
@@ -14,4 +14,8 @@ div.currencyInput {
     font-size: medium;
     margin: 0;
   }
+}
+
+div.countryFlag {
+  margin-right: 1rem;
 }

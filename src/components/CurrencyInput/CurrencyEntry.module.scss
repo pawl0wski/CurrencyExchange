@@ -9,6 +9,10 @@ div.currencyEntry {
   user-select: none;
   cursor: pointer;
 
+  div.currencyFlag {
+    margin-right: 0.5rem;
+  }
+
   p {
     margin: 0;
   }

@@ -11,6 +11,7 @@ import {
     useInteractions,
     FloatingFocusManager
 } from "@floating-ui/react";
+import CurrencyFlag from "../CurrencyFlag/CurrencyFlag.tsx";
 
 export default function CurrencyInput() {
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -33,7 +34,9 @@ export default function CurrencyInput() {
 
     return <>
         <div ref={refs.setReference} className={styles.currencyInput} {...getReferenceProps()} >
-            <div></div>
+            <div className={styles.countryFlag}>
+                <CurrencyFlag currencyCode="PLN" />
+            </div>
             <p>
                 Polski złoty
             </p>
