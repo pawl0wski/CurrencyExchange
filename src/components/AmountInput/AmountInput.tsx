@@ -1,5 +1,8 @@
 import styles from "./AmountInput.module.scss";
 import Currency from "../../types/currency.ts";
+import { useEffect, useState, ChangeEvent } from "react";
+import { useSelector } from "react-redux";
+import { RootStoreState } from "../../store.ts";
 
 interface AmountInputProps {
     disabled?: boolean
@@ -10,11 +13,35 @@ interface AmountInputProps {
 }
 
 export default function AmountInput(props: AmountInputProps) {
+    const [currency, setCurrency] = useState<Currency>({name: "", code: "", favorite: false});
+    const currencies = useSelector<RootStoreState, Currency[]>(state => state.currencies.currencies);
+
+    useEffect(() => {
+        console.log("SetCurrency!")
+        if (props.currency !== null)
+            setCurrency(props.currency);
+    }, [props.currency]);
+
     const getCurrencyText = () => {
-        if (props.currency === null) {
+        if (currency === null) {
             return ""
         }
-        return props.currency.code;
+        return currency.code;
+    }
+    
+    const onCurrencyTextChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const newCode = e.target.value.toUpperCase()
+        setCurrency({...currency, code: newCode});
+        if (newCode.length == 3) {
+            const foundCurrency = currencies.find(c => c.code == newCode)
+            if (foundCurrency !== undefined){
+                props.onCurrencyChange(foundCurrency);
+            }
+        }
+    }
+
+    const onCurrencyChangeAbort = () => {
+        setCurrency(props.currency ?? currency);
     }
 
     return <div className={styles.amountInput}>
@@ -29,6 +56,8 @@ export default function AmountInput(props: AmountInputProps) {
             className={styles.currency}
             type="text"
             disabled={props.disabled ?? false}
+            onChange={onCurrencyTextChange}
+            onBlur={onCurrencyChangeAbort}
             value={getCurrencyText()}
             maxLength={3}/>
     </div>

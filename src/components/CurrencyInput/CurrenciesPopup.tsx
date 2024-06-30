@@ -31,7 +31,8 @@ export default function CurrenciesPopup(props: CurrenciesPopupProps) {
         <SearchInput value={searchText} onChange={(e) => setSearchText(e.target.value)} />
         <hr />
         <div className={styles.currenciesList}>
-            {getFilteredAndSortedCurrencies().map((currency) => <CurrencyEntry currency={currency} onClick={() => props.onCurrencyChanged(currency)}  />)}
+            {getFilteredAndSortedCurrencies().map(
+                (currency) => <CurrencyEntry currency={currency} onClick={() => props.onCurrencyChanged(currency)}  />)}
         </div>
     </div>
 }

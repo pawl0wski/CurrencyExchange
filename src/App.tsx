@@ -14,7 +14,6 @@ function App() {
     const currencies = useSelector<RootStoreState, Currency[]>(state => state.currencies.currencies);
 
     useEffect(() => {
-
         if (currencies.length === 0 )
             getCurrenciesFromApi().then((currencies) => {
                 dispatch(updateCurrencies(currencies))

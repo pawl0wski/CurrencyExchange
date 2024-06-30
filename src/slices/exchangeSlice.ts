@@ -27,7 +27,7 @@ export const exchangeSlice = createSlice({
         },
         setToCurrency(state, action: PayloadAction<Currency>) {
             state.to = action.payload;
-        }
+        },
     }
 })
 
