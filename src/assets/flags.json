@@ -151,7 +151,7 @@
   "TND": "https://flagcdn.com/w320/tn.png",
   "SHP": "https://flagcdn.com/w320/sh.png",
   "UGX": "https://flagcdn.com/w320/ug.png",
-  "EUR": "https://flagcdn.com/w320/lu.png",
+  "EUR": "https://flagcdn.com/w320/eu.png",
   "SLE": null,
   "XAG": null,
   "TWD": "https://flagcdn.com/w320/tw.png",
@@ -169,5 +169,5 @@
   "VEF": null,
   "VND": "https://flagcdn.com/w320/vn.png",
   "ZAR": "https://flagcdn.com/w320/sz.png",
-  "USD": "https://flagcdn.com/w320/ec.png"
+  "USD": "https://flagcdn.com/w320/us.png"
 }
