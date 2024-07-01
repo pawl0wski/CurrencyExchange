@@ -1,10 +1,9 @@
 import CurrencyRate from "@/types/currencyRate.ts";
 import Currency from "@/types/currency.ts";
-import CurrencyRates from "@/types/currencyRates.ts";
 
-export function calculateAmount(fromAmount: number, fromCurrency: Currency, toCurrency: Currency, currencyRates: CurrencyRates): number {
-    const fromCurrencyRate = getCurrencyRate(fromCurrency, currencyRates.rates);
-    const toCurrencyRate = getCurrencyRate(toCurrency, currencyRates.rates);
+export function calculateAmount(fromAmount: number, fromCurrency: Currency, toCurrency: Currency, currencyRates: CurrencyRate[]): number {
+    const fromCurrencyRate = getCurrencyRate(fromCurrency, currencyRates);
+    const toCurrencyRate = getCurrencyRate(toCurrency, currencyRates);
 
     if (fromCurrencyRate === null || toCurrencyRate === null)
         return 0;

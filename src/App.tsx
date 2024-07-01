@@ -18,9 +18,10 @@ function App() {
                 dispatch(updateCurrencies(currencies))
             })
 
-            // DEBUG: To reduce Quota usage
-            // getCurrenciesRateFromApi().then((currenciesRate) => {
-            //     dispatch(updateCurrencyRates(currenciesRate))
+            // getCurrenciesRateFromApi().then((currenciesRatesWithTimestamp) => {
+            //     const {timestamp, currenciesRatios} = currenciesRatesWithTimestamp;
+            //     dispatch(updateCurrencyRates(currenciesRatios))
+            //     dispatch(updateCurrencyRatesTimestamp(timestamp))
             // })
     }, []);
 

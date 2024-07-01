@@ -1,24 +1,29 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import CurrencyRates from "@/types/currencyRates.ts";
+import CurrencyRate from "@/types/currencyRate.ts";
 
 export interface CurrenciesRatesSliceState {
-    currencyRates: CurrencyRates | null;
+    currencyRates: CurrencyRate[];
+    timestamp: number
 }
 
 const initialState: CurrenciesRatesSliceState = {
-    currencyRates: null
+    currencyRates: [],
+    timestamp: 0,
 }
 
 export const currenciesRatesSlice = createSlice({
     name: "currencyRates",
     initialState,
     reducers: {
-        updateCurrencyRates(state, action: PayloadAction<CurrencyRates>) {
+        updateCurrencyRates(state, action: PayloadAction<CurrencyRate[]>) {
             state.currencyRates = action.payload;
+        },
+        updateCurrencyRatesTimestamp(state, action: PayloadAction<number>) {
+            state.timestamp = action.payload;
         }
     }
 })
 
-export const {updateCurrencyRates} = currenciesRatesSlice.actions;
+export const {updateCurrencyRates, updateCurrencyRatesTimestamp} = currenciesRatesSlice.actions;
 
 export default currenciesRatesSlice.reducer;

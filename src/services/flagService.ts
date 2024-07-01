@@ -7,8 +7,5 @@ interface Flags {
 const flags: Flags = flagsJson;
 
 export function getFlagUrl(currencyCode: string) : string | null {
-    if (currencyCode in flags) {
-        return flags[currencyCode];
-    }
-    return null;
+    return flags[currencyCode] ?? null;
 }
