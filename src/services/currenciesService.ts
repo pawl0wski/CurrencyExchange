@@ -1,5 +1,5 @@
 import Currency from "@/types/currency.ts";
-import { withApiKey } from "@/utils/withApiKey.ts";
+import { withExchangeRatesApiKey } from "@/utils/withExchangeRatesApiKey.ts";
 
 
 interface CurrenciesApiResponse {
@@ -8,7 +8,7 @@ interface CurrenciesApiResponse {
 }
 
 export async function getCurrenciesFromApi(): Promise<Currency[]> {
-    const response = await fetch(withApiKey("http://api.exchangeratesapi.io/v1/symbols"), { method: "GET" });
+    const response = await fetch(withExchangeRatesApiKey("http://api.exchangeratesapi.io/v1/symbols"), { method: "GET" });
     const responseData: CurrenciesApiResponse = await response.json();
 
     return createCurrenciesWithResponseData(responseData);
