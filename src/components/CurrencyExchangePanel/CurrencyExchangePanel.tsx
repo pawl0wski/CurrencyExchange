@@ -10,7 +10,7 @@ import {
     setToCurrency
 } from "@/slices/currentExchangeSlice.ts";
 import { useEffect } from "react";
-import { calculateAmount } from "@/utils/calculateAmount.ts";
+import { calculateToAmount } from "@/utils/calculateToAmount.ts";
 import CurrencyRate from "@/types/currencyRate.ts";
 import { addHistoryExchange } from "@/slices/exchangeHistoriesSlice.ts";
 
@@ -23,7 +23,7 @@ export default function CurrencyExchangePanel() {
 
     useEffect(() => {
         if (currencyRates !== null && (fromCurrency !== null && toCurrency !== null)) {
-            const toAmount = calculateAmount(fromAmount, fromCurrency, toCurrency, currencyRates)
+            const toAmount = calculateToAmount(fromAmount, fromCurrency, toCurrency, currencyRates)
             dispatcher(setToAmount(toAmount))
         }
     }, [fromCurrency, fromAmount, toCurrency]);
