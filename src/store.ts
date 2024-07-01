@@ -1,8 +1,9 @@
-import {configureStore} from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import exchangeReducer, { ExchangeSliceState } from "./slices/exchangeSlice.ts";
-import currenciesReducer, {CurrenciesSliceState} from "./slices/currenciesSlice.ts";
+import currenciesReducer, { CurrenciesSliceState } from "./slices/currenciesSlice.ts";
 import currenciesRatesReducer, { CurrenciesRatesSliceState } from "./slices/currenciesRatesSlice.ts";
 import historyReducer, { HistorySliceState } from "./slices/historySlice.ts";
+import { loadStateFromLocalStorage, saveStoreToLocalStorage } from "@/utils/stateStorage.ts";
 
 export interface RootStoreState {
     exchange: ExchangeSliceState,
@@ -11,34 +12,18 @@ export interface RootStoreState {
     history: HistorySliceState
 }
 
-function saveState(state: RootStoreState) {
-    const serializedState = JSON.stringify(state)
-    localStorage.setItem("state", serializedState)
-}
-
-function loadState() : RootStoreState | null {
-    const serializedState = localStorage.getItem("state");
-
-    if (serializedState !== null)
-        return JSON.parse(serializedState);
-
-    return null;
-}
-
-const savedState = loadState()
-
-const store =  configureStore({
-    preloadedState: savedState ?? undefined,
+const store = configureStore({
+    preloadedState: loadStateFromLocalStorage(),
     reducer: {
         history: historyReducer,
         exchange: exchangeReducer,
         currencies: currenciesReducer,
-        currenciesRates: currenciesRatesReducer,
+        currenciesRates: currenciesRatesReducer
     }
-})
+});
 
-    store.subscribe(() => {
-    saveState(store.getState());
-})
+store.subscribe(() => {
+    saveStoreToLocalStorage(store.getState());
+});
 
 export default store;
