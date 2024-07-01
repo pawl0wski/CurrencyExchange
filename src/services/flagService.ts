@@ -1,4 +1,4 @@
-import flagsJson from "../assets/flags.json";
+import flagsJson from "@/assets/flags.json";
 
 interface Flags {
     [key: string]: string | null

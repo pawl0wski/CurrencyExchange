@@ -1,5 +1,5 @@
 import styles from "./HistoryPanelEntryFromTo.module.scss";
-import CurrencyFlag from "../CurrencyFlag/CurrencyFlag.tsx";
+import CurrencyFlag from "@/components/CurrencyFlag/CurrencyFlag.tsx";
 
 interface HistoryPanelEntryFromToProps {
     code: string,

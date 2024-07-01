@@ -1,4 +1,4 @@
-import { getFlagUrl } from "../../services/flagService.ts";
+import { getFlagUrl } from "@/services/flagService.ts";
 import { useEffect, useState } from "react";
 import { MdQuestionMark } from "react-icons/md";
 import styles from "./CurrencyFlag.module.scss";

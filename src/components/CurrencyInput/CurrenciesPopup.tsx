@@ -1,10 +1,10 @@
 import styles from "./CurrenciesPopup.module.scss";
-import SearchInput from "../SearchInput/SearchInput.tsx";
+import SearchInput from "@/components/SearchInput/SearchInput.tsx";
 import { useState } from "react";
 import CurrencyEntry from "./CurrencyEntry.tsx";
-import Currency from "../../types/currency.ts";
+import Currency from "@/types/currency.ts";
 import { useSelector } from "react-redux";
-import { RootStoreState } from "../../store.ts";
+import { RootStoreState } from "@/store.ts";
 
 interface CurrenciesPopupProps {
     currency: Currency | null;

@@ -11,8 +11,8 @@ import {
     useInteractions,
     FloatingFocusManager
 } from "@floating-ui/react";
-import CurrencyFlag from "../CurrencyFlag/CurrencyFlag.tsx";
-import Currency from "../../types/currency.ts";
+import CurrencyFlag from "@/components/CurrencyFlag/CurrencyFlag.tsx";
+import Currency from "@/types/currency.ts";
 
 interface CurrencyInputProps {
     currency: Currency | null,

@@ -1,7 +1,7 @@
-import CurrencyInput from "../CurrencyInput/CurrencyInput.tsx";
-import AmountInput from "../AmountInput/AmountInput.tsx";
+import CurrencyInput from "@/components/CurrencyInput/CurrencyInput.tsx";
+import AmountInput from "@/components/AmountInput/AmountInput.tsx";
 import styles from "./AmountWithCurrencyInput.module.scss";
-import Currency from "../../types/currency.ts";
+import Currency from "@/types/currency.ts";
 
 interface AmountWithCurrencyProps {
     type: "from" | "to";

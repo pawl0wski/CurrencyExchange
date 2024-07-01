@@ -1,18 +1,18 @@
 import styles from "./CurrencyExchangePanel.module.scss";
-import AmountWithCurrency from "../AmountWithCurrency/AmountWithCurrency.tsx";
+import AmountWithCurrency from "@/components/AmountWithCurrency/AmountWithCurrency.tsx";
 import { useDispatch, useSelector } from "react-redux";
-import { RootStoreState } from "../../store.ts";
+import { RootStoreState } from "@/store.ts";
 import {
     ExchangeSliceState,
     setFromAmount,
     setFromCurrency,
     setToAmount,
     setToCurrency
-} from "../../slices/exchangeSlice.ts";
+} from "@/slices/exchangeSlice.ts";
 import { useEffect } from "react";
-import { calculateAmount } from "../../utils/calculateAmount.ts";
-import CurrencyRates from "../../types/currencyRates.ts";
-import { addHistoryExchange } from "../../slices/historySlice.ts";
+import { calculateAmount } from "@/utils/calculateAmount.ts";
+import CurrencyRates from "@/types/currencyRates.ts";
+import { addHistoryExchange } from "@/slices/historySlice.ts";
 
 export default function CurrencyExchangePanel() {
     const exchangeSliceState = useSelector<RootStoreState, ExchangeSliceState>(state => state.exchange)

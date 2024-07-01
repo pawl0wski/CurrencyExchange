@@ -1,6 +1,6 @@
-import CurrencyRate from "../types/currencyRate.ts";
-import Currency from "../types/currency.ts";
-import CurrencyRates from "../types/currencyRates.ts";
+import CurrencyRate from "@/types/currencyRate.ts";
+import Currency from "@/types/currency.ts";
+import CurrencyRates from "@/types/currencyRates.ts";
 
 export function calculateAmount(fromAmount: number, fromCurrency: Currency, toCurrency: Currency, currencyRates: CurrencyRates): number {
     const fromCurrencyRate = getCurrencyRate(fromCurrency, currencyRates.rates);

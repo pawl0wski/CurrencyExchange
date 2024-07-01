@@ -1,7 +1,7 @@
 import HistoryPanelEntry from "./HistoryPanelEntry.tsx";
 import { useSelector } from "react-redux";
-import { RootStoreState } from "../../store.ts";
-import { ExchangeSliceState } from "../../slices/exchangeSlice.ts";
+import { RootStoreState } from "@/store.ts";
+import { ExchangeSliceState } from "@/slices/exchangeSlice.ts";
 import styles from "./HistoryPanel.module.scss";
 
 export default function HistoryPanel() {

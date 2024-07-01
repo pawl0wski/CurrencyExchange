@@ -1,10 +1,10 @@
-import Currency from "../../types/currency.ts";
+import Currency from "@/types/currency.ts";
 import { MdStar } from "react-icons/md";
 import styles from "./CurrencyEntry.module.scss";
-import CurrencyFlag from "../CurrencyFlag/CurrencyFlag.tsx";
+import CurrencyFlag from "@/components/CurrencyFlag/CurrencyFlag.tsx";
 import { MouseEventHandler, MouseEvent } from "react";
 import { useDispatch } from "react-redux";
-import { updateFavorite } from "../../slices/currenciesSlice.ts";
+import { updateFavorite } from "@/slices/currenciesSlice.ts";
 
 interface CurrencyEntryProps {
     currency: Currency;

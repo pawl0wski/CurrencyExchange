@@ -1,5 +1,5 @@
-import Currency from "../types/currency.ts";
-import { withApiKey } from "../utils/withApiKey.ts";
+import Currency from "@/types/currency.ts";
+import { withApiKey } from "@/utils/withApiKey.ts";
 
 
 interface CurrenciesApiResponse {

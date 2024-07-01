@@ -1,8 +1,8 @@
 import styles from "./AmountInput.module.scss";
-import Currency from "../../types/currency.ts";
+import Currency from "@/types/currency.ts";
 import { useEffect, useState, ChangeEvent } from "react";
 import { useSelector } from "react-redux";
-import { RootStoreState } from "../../store.ts";
+import { RootStoreState } from "@/store.ts";
 
 interface AmountInputProps {
     disabled?: boolean

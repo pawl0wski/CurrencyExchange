@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import CurrencyRates from "../types/currencyRates.ts";
+import CurrencyRates from "@/types/currencyRates.ts";
 
 export interface CurrenciesRatesSliceState {
     currencyRates: CurrencyRates | null;

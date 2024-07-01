@@ -1,13 +1,12 @@
-import './App.module.scss'
-import CurrencyExchangePanel from "./components/CurrencyExchangePanel/CurrencyExchangePanel.tsx";
+import CurrencyExchangePanel from "@/components/CurrencyExchangePanel/CurrencyExchangePanel.tsx";
 import styles from "./App.module.scss";
-import HistoryPanel from "./components/HistoryPanel/HistoryPanel.tsx";
+import HistoryPanel from "@/components/HistoryPanel/HistoryPanel.tsx";
 import { useEffect } from "react";
-import { getCurrenciesFromApi } from "./services/currenciesService.ts";
+import { getCurrenciesFromApi } from "@/services/currenciesService.ts";
 import { useDispatch, useSelector } from "react-redux";
-import { updateCurrencies } from "./slices/currenciesSlice.ts";
-import { RootStoreState } from "./store.ts";
-import Currency from "./types/currency.ts";
+import { updateCurrencies } from "@/slices/currenciesSlice.ts";
+import { RootStoreState } from "@/store.ts";
+import Currency from "@/types/currency.ts";
 
 function App() {
     const dispatch = useDispatch();
