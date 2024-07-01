@@ -1,22 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Currency from "types/currency.ts";
+import Currency from "@/types/currency.ts";
 
-export interface ExchangeSliceState {
+export interface CurrentExchangeSliceState {
     fromAmount: number,
     fromCurrency: Currency | null,
     toAmount: number,
     toCurrency: Currency | null,
 }
 
-const initialState: ExchangeSliceState = {
+const initialState: CurrentExchangeSliceState = {
     fromAmount: 0,
     fromCurrency: null,
     toAmount: 0,
     toCurrency: null,
 }
 
-export const exchangeSlice = createSlice({
-    name: "exchange",
+export const currentExchangeSlice = createSlice({
+    name: "currentExchange",
     initialState,
     reducers: {
         setFromAmount(state, action: PayloadAction<number>) {
@@ -34,6 +34,6 @@ export const exchangeSlice = createSlice({
     }
 })
 
-export const {setFromAmount, setFromCurrency, setToCurrency, setToAmount} = exchangeSlice.actions;
+export const {setFromAmount, setFromCurrency, setToCurrency, setToAmount} = currentExchangeSlice.actions;
 
-export default exchangeSlice.reducer;
+export default currentExchangeSlice.reducer;

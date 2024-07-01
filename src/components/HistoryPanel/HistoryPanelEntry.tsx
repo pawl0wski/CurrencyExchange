@@ -1,12 +1,12 @@
 import { MdArrowRightAlt, MdDelete } from "react-icons/md";
 import styles from "./HistoryPanelEntry.module.scss";
-import { ExchangeSliceState } from "@/slices/exchangeSlice.ts";
+import { CurrentExchangeSliceState } from "@/slices/currentExchangeSlice.ts";
 import HistoryPanelEntryFromTo from "./HistoryPanelEntryFromTo.tsx";
 import { useDispatch } from "react-redux";
-import { removeHistoryExchange } from "@/slices/historySlice.ts";
+import { removeHistoryExchange } from "@/slices/exchangeHistoriesSlice.ts";
 
 interface HistoryPanelEntryProps {
-    historyExchange : ExchangeSliceState;
+    historyExchange : CurrentExchangeSliceState;
 }
 
 export default function HistoryPanelEntry(props: HistoryPanelEntryProps) {

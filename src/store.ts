@@ -1,22 +1,22 @@
 import { configureStore } from "@reduxjs/toolkit";
-import exchangeReducer, { ExchangeSliceState } from "./slices/exchangeSlice.ts";
+import currentExchangeReducer, { CurrentExchangeSliceState } from "./slices/currentExchangeSlice.ts";
 import currenciesReducer, { CurrenciesSliceState } from "./slices/currenciesSlice.ts";
 import currenciesRatesReducer, { CurrenciesRatesSliceState } from "./slices/currenciesRatesSlice.ts";
-import historyReducer, { HistorySliceState } from "./slices/historySlice.ts";
+import exchangeHistoriesReducer, { ExchangeHistoriesSliceState } from "./slices/exchangeHistoriesSlice.ts";
 import { loadStateFromLocalStorage, saveStoreToLocalStorage } from "@/utils/stateStorage.ts";
 
 export interface RootStoreState {
-    exchange: ExchangeSliceState,
+    currentExchange: CurrentExchangeSliceState,
     currencies: CurrenciesSliceState,
     currenciesRates: CurrenciesRatesSliceState,
-    history: HistorySliceState
+    exchangeHistories: ExchangeHistoriesSliceState
 }
 
 const store = configureStore({
     preloadedState: loadStateFromLocalStorage(),
     reducer: {
-        history: historyReducer,
-        exchange: exchangeReducer,
+        exchangeHistories: exchangeHistoriesReducer,
+        currentExchange: currentExchangeReducer,
         currencies: currenciesReducer,
         currenciesRates: currenciesRatesReducer
     }

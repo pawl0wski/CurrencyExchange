@@ -3,23 +3,23 @@ import AmountWithCurrency from "@/components/AmountWithCurrency/AmountWithCurren
 import { useDispatch, useSelector } from "react-redux";
 import { RootStoreState } from "@/store.ts";
 import {
-    ExchangeSliceState,
+    CurrentExchangeSliceState,
     setFromAmount,
     setFromCurrency,
     setToAmount,
     setToCurrency
-} from "@/slices/exchangeSlice.ts";
+} from "@/slices/currentExchangeSlice.ts";
 import { useEffect } from "react";
 import { calculateAmount } from "@/utils/calculateAmount.ts";
-import CurrencyRates from "@/types/currencyRates.ts";
-import { addHistoryExchange } from "@/slices/historySlice.ts";
+import CurrencyRate from "@/types/currencyRate.ts";
+import { addHistoryExchange } from "@/slices/exchangeHistoriesSlice.ts";
 
 export default function CurrencyExchangePanel() {
-    const exchangeSliceState = useSelector<RootStoreState, ExchangeSliceState>(state => state.exchange)
+    const exchangeSliceState = useSelector<RootStoreState, CurrentExchangeSliceState>(state => state.currentExchange)
     const {fromCurrency, toCurrency, fromAmount, toAmount} = exchangeSliceState;
 
     const dispatcher = useDispatch();
-    const currencyRates = useSelector<RootStoreState, CurrencyRates | null>(state => state.currenciesRates.currencyRates);
+    const currencyRates = useSelector<RootStoreState, CurrencyRate[] | null>(state => state.currenciesRates.currencyRates);
 
     useEffect(() => {
         if (currencyRates !== null && (fromCurrency !== null && toCurrency !== null)) {
