@@ -1,11 +1,9 @@
 import HistoryPanelEntry from "./HistoryPanelEntry.tsx";
-import { useSelector } from "react-redux";
-import { RootStoreState } from "@/store.ts";
-import { CurrentExchangeSliceState } from "@/slices/currentExchangeSlice.ts";
 import styles from "./HistoryPanel.module.scss";
+import { useHistoryExchanges } from "@/hooks/useHistoryExchanges.ts";
 
 export default function HistoryPanel() {
-    const historyExchanges = useSelector<RootStoreState, CurrentExchangeSliceState[]>(state => state.exchangeHistories.exchanges);
+    const historyExchanges = useHistoryExchanges();
 
     return <div className={styles.historyPanel}>
         {historyExchanges.map(

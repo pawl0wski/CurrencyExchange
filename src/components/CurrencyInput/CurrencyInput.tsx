@@ -1,5 +1,5 @@
-import {MdKeyboardArrowDown} from "react-icons/md"
-import styles from "./CurrencyInput.module.scss"
+import { MdKeyboardArrowDown } from "react-icons/md";
+import styles from "./CurrencyInput.module.scss";
 import CurrenciesPopup from "./CurrenciesPopup.tsx";
 import { useState } from "react";
 import {
@@ -22,20 +22,20 @@ interface CurrencyInputProps {
 export default function CurrencyInput(props: CurrencyInputProps) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    const {refs, floatingStyles, context} = useFloating({
+    const { refs, floatingStyles, context } = useFloating({
         open: isOpen,
         onOpenChange: setIsOpen,
         whileElementsMounted: autoUpdate
-    })
+    });
 
     const click = useClick(context);
     const dismiss = useDismiss(context);
     const role = useRole(context);
 
-    const {getReferenceProps, getFloatingProps} = useInteractions([
+    const { getReferenceProps, getFloatingProps } = useInteractions([
         click,
         dismiss,
-        role,
+        role
     ]);
 
     return <>
@@ -46,16 +46,16 @@ export default function CurrencyInput(props: CurrencyInputProps) {
             <p>
                 {props.currency?.name ?? "Wybierz walute"}
             </p>
-            <MdKeyboardArrowDown/>
+            <MdKeyboardArrowDown />
         </div>
-        { isOpen && <FloatingFocusManager  context={context} modal={false}>
+        {isOpen && <FloatingFocusManager context={context} modal={false}>
             <div
-            ref={refs.setFloating}
-            style={floatingStyles}
+                ref={refs.setFloating}
+                style={floatingStyles}
                 {...getFloatingProps()}>
-                <CurrenciesPopup currency={props.currency} onCurrencyChanged={props.onCurrencyChange}  />
+                <CurrenciesPopup onCurrencyChanged={props.onCurrencyChange} />
 
             </div>
         </FloatingFocusManager>}
-    </>
+    </>;
 }

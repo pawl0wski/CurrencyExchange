@@ -4,21 +4,22 @@ import { MdQuestionMark } from "react-icons/md";
 import styles from "./CurrencyFlag.module.scss";
 
 interface CurrencyFlagProps {
-    currencyCode: string
+    currencyCode: string;
 }
 
 export default function CurrencyFlag(props: CurrencyFlagProps) {
     const [flagUrl, setFlagUrl] = useState<string | null>(null);
+    const { currencyCode } = props;
 
     useEffect(() => {
-        setFlagUrl(getFlagUrl(props.currencyCode));
-    }, [props.currencyCode]);
+        setFlagUrl(getFlagUrl(currencyCode));
+    }, [currencyCode]);
 
     return <div className={styles.currencyFlag}>
         {
             flagUrl === null ?
                 <MdQuestionMark />
-                : <img src={flagUrl} alt={props.currencyCode} />
+                : <img src={flagUrl} alt={currencyCode} />
         }
-    </div>
+    </div>;
 }

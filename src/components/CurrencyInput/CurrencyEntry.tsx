@@ -1,32 +1,27 @@
 import Currency from "@/types/currency.ts";
 import { MdStar } from "react-icons/md";
-import styles from "./CurrencyEntry.module.scss";
 import CurrencyFlag from "@/components/CurrencyFlag/CurrencyFlag.tsx";
-import { MouseEventHandler, MouseEvent } from "react";
-import { useDispatch } from "react-redux";
-import { updateFavorite } from "@/slices/currenciesSlice.ts";
+import { MouseEventHandler } from "react";
+import styles from "./CurrencyEntry.module.scss";
+import { useFavoriteCurrency } from "@/hooks/useFavoriteCurrency.ts";
 
 interface CurrencyEntryProps {
     currency: Currency;
-    onClick: MouseEventHandler<HTMLDivElement>;
+    onCurrencyPick: MouseEventHandler<HTMLDivElement>;
 }
 
 export default function CurrencyEntry(props: CurrencyEntryProps) {
-    const currency = props.currency;
-    const dispatch = useDispatch();
+    const { currency, onCurrencyPick } = props;
+    const { handleFavoriteClick } = useFavoriteCurrency(currency);
 
-    const onFavoriteClick = (e: MouseEvent<HTMLDivElement>) => {
-        e.stopPropagation();
-        dispatch(updateFavorite({ ...currency, favorite: !currency.favorite }));
-    };
 
-    return <div className={styles.currencyEntry} onClick={props.onClick}>
+    return <div className={styles.currencyEntry} onClick={onCurrencyPick}>
         <div className={styles.currencyFlag}>
-            <CurrencyFlag currencyCode={props.currency.code} />
+            <CurrencyFlag currencyCode={currency.code} />
         </div>
         <p>{currency.name}</p>
         <div className={`${styles.favoriteIcon} ${currency.favorite && styles.favoriteIconActive}`}
-             onClick={onFavoriteClick}>
+             onClick={handleFavoriteClick}>
             <MdStar />
         </div>
     </div>;

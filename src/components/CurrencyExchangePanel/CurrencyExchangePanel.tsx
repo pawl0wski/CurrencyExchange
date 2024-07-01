@@ -1,37 +1,21 @@
 import styles from "./CurrencyExchangePanel.module.scss";
 import AmountWithCurrency from "@/components/AmountWithCurrency/AmountWithCurrency.tsx";
-import { useDispatch, useSelector } from "react-redux";
-import { RootStoreState } from "@/store.ts";
 import {
-    CurrentExchangeSliceState,
     setFromAmount,
     setFromCurrency,
-    setToAmount,
     setToCurrency
 } from "@/slices/currentExchangeSlice.ts";
-import { useEffect } from "react";
-import { calculateToAmount } from "@/utils/calculateToAmount.ts";
-import CurrencyRate from "@/types/currencyRate.ts";
-import { addHistoryExchange } from "@/slices/exchangeHistoriesSlice.ts";
+import { useExchangeSave } from "@/hooks/useExchangeSave.ts";
+import { useToAmountCalculator } from "@/hooks/useToAmountCalculator.ts";
+import { useCurrentExchangeState } from "@/hooks/useCurrentExchangeState.ts";
+import { useDispatch } from "react-redux";
 
 export default function CurrencyExchangePanel() {
-    const exchangeSliceState = useSelector<RootStoreState, CurrentExchangeSliceState>(state => state.currentExchange)
-    const {fromCurrency, toCurrency, fromAmount, toAmount} = exchangeSliceState;
-
+    const {fromAmount, fromCurrency, toAmount, toCurrency} = useCurrentExchangeState();
+    const {handleExchangeSave} = useExchangeSave();
+    useToAmountCalculator(fromAmount, fromCurrency, toCurrency);
     const dispatcher = useDispatch();
-    const currencyRates = useSelector<RootStoreState, CurrencyRate[] | null>(state => state.currenciesRates.currencyRates);
 
-    useEffect(() => {
-        if (currencyRates !== null && (fromCurrency !== null && toCurrency !== null)) {
-            const toAmount = calculateToAmount(fromAmount, fromCurrency, toCurrency, currencyRates)
-            dispatcher(setToAmount(toAmount))
-        }
-    }, [fromCurrency, fromAmount, toCurrency]);
-
-
-    const onSaveButton = () => {
-        dispatcher(addHistoryExchange(exchangeSliceState));
-    }
 
     return <div className={styles.currencyExchangePanel}>
         <h3>Waluta źródłowa</h3>
@@ -51,7 +35,7 @@ export default function CurrencyExchangePanel() {
             onAmountChange={() => {}}
         />
         <hr className={styles.buttonSeparator} />
-        <button className={styles.saveButton} onClick={onSaveButton} >
+        <button className={styles.saveButton} onClick={handleExchangeSave} >
             Zapisz
         </button>
     </div>;

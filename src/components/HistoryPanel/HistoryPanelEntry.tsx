@@ -19,7 +19,6 @@ export default function HistoryPanelEntry(props: HistoryPanelEntryProps) {
             <MdArrowRightAlt />
         </div>
         <HistoryPanelEntryFromTo code={toCurrency?.code ?? ""} amount={toAmount} />
-
         <button onClick={() => dispatcher(removeHistoryExchange(props.historyExchange))}>
             <MdDelete />
         </button>

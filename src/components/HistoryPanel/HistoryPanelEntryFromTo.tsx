@@ -13,11 +13,7 @@ export default function HistoryPanelEntryFromTo(props: HistoryPanelEntryFromToPr
         <div className={styles.currencyFlag}>
             <CurrencyFlag currencyCode={code} />
         </div>
-        <p>
-            {amount}
-        </p>
-        <p>
-            {code}
-        </p>
+        <p>{amount}</p>
+        <p>{code}</p>
     </div>;
 }

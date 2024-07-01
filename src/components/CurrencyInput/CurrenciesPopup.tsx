@@ -1,38 +1,44 @@
 import styles from "./CurrenciesPopup.module.scss";
 import SearchInput from "@/components/SearchInput/SearchInput.tsx";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import CurrencyEntry from "./CurrencyEntry.tsx";
 import Currency from "@/types/currency.ts";
 import { useSelector } from "react-redux";
 import { RootStoreState } from "@/store.ts";
 
 interface CurrenciesPopupProps {
-    currency: Currency | null;
     onCurrencyChanged: (currency: Currency) => void;
 }
 
 export default function CurrenciesPopup(props: CurrenciesPopupProps) {
-    const currencies = useSelector<RootStoreState, Currency[]>(state => state.currencies.currencies)
+    const currencies = useSelector<RootStoreState, Currency[]>(state => state.currencies.currencies);
     const [searchText, setSearchText] = useState("");
 
-
-    const getFilteredAndSortedCurrencies = () => {
-        const filteredCountries =  currencies.filter((currency) => currency.name.toLowerCase().includes(searchText.toLowerCase()));
-
-        return filteredCountries.sort((a, b) => {
-            if (a.favorite && !b.favorite) return -1;
-            if (!a.favorite && b.favorite) return 1;
-
-            return a.name.localeCompare(b.name);
-        });
-    }
+    const filteredAndSortedCurrencies = useMemo(() => {
+        const filteredCountries = filterCountriesBySearchText(searchText, currencies);
+        return sortCountriesByFavoriteAndName(filteredCountries);
+    }, [currencies, searchText]);
 
     return <div className={styles.currenciesPopup}>
-        <SearchInput value={searchText} onChange={(e) => setSearchText(e.target.value)} />
+        <SearchInput value={searchText} onSearchInputChange={(e) => setSearchText(e.target.value)} />
         <hr />
         <div className={styles.currenciesList}>
-            {getFilteredAndSortedCurrencies().map(
-                (currency) => <CurrencyEntry currency={currency} onClick={() => props.onCurrencyChanged(currency)}  />)}
+            {filteredAndSortedCurrencies.map(
+                (currency) => <CurrencyEntry key={currency.code} currency={currency}
+                                             onCurrencyPick={() => props.onCurrencyChanged(currency)} />)}
         </div>
-    </div>
+    </div>;
+}
+
+function filterCountriesBySearchText(searchText: string, currencies: Currency[]) {
+    return currencies.filter((currency) => currency.name.toLowerCase().includes(searchText.toLowerCase()));
+}
+
+function sortCountriesByFavoriteAndName(currencies: Currency[]) {
+    return currencies.sort((a, b) => {
+        if (a.favorite && !b.favorite) return -1;
+        if (!a.favorite && b.favorite) return 1;
+
+        return a.name.localeCompare(b.name);
+    });
 }

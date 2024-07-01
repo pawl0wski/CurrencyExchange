@@ -12,21 +12,23 @@ interface AmountWithCurrencyProps {
 }
 
 export default function AmountWithCurrency(props: AmountWithCurrencyProps) {
+    const { amount, onAmountChange, onCurrencyChange, currency, type} = props;
+
     return <div className={styles.amountWithCurrency}>
         <div className={styles.amountInput}>
             <label>Kwota</label>
             <AmountInput
-                amount={props.amount}
-                onAmountChange={props.onAmountChange}
-                currency={props.currency}
-                onCurrencyChange={props.onCurrencyChange}
-                disabled={props.type == "to"} />
+                amount={amount}
+                onAmountChange={onAmountChange}
+                currency={currency}
+                onCurrencyChange={onCurrencyChange}
+                disabled={type == "to"} />
         </div>
         <div className={styles.currencyInput}>
             <label>Waluta</label>
             <CurrencyInput
-                currency={props.currency}
-                onCurrencyChange={props.onCurrencyChange}
+                currency={currency}
+                onCurrencyChange={onCurrencyChange}
             />
         </div>
     </div>

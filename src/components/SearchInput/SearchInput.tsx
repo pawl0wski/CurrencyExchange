@@ -4,10 +4,11 @@ import {ChangeEventHandler} from "react";
 
 interface SearchInputProps {
     value: string,
-    onChange: ChangeEventHandler<HTMLInputElement>,
+    onSearchInputChange: ChangeEventHandler<HTMLInputElement>,
 }
 
 export default function SearchInput(props: SearchInputProps) {
+    const {value, onSearchInputChange} = props;
 
     return <div>
         <div className={styles.searchBox}>
@@ -15,8 +16,8 @@ export default function SearchInput(props: SearchInputProps) {
                 <MdSearch/>
             </div>
             <input type="text"
-                   value={props.value}
-                   onChange={props.onChange}
+                   value={value}
+                   onChange={onSearchInputChange}
                    placeholder="Szukaj..." />
         </div>
     </div>

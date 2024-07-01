@@ -1,8 +1,6 @@
 import styles from "./AmountInput.module.scss";
 import Currency from "@/types/currency.ts";
-import { useEffect, useState, ChangeEvent } from "react";
-import { useSelector } from "react-redux";
-import { RootStoreState } from "@/store.ts";
+import { useCurrencySelectByCode } from "@/hooks/useCurrencySelectByCode.ts";
 
 interface AmountInputProps {
     disabled?: boolean
@@ -13,43 +11,27 @@ interface AmountInputProps {
 }
 
 export default function AmountInput(props: AmountInputProps) {
-    const [currencyCode, setCurrencyCode] = useState<string>("");
-    const currencies = useSelector<RootStoreState, Currency[]>(state => state.currencies.currencies);
-
-    useEffect(() => {
-        setCurrencyCode(props.currency?.code ?? "");
-    }, [props.currency]);
-
-    const onCurrencyTextChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const newCode = e.target.value.toUpperCase()
-        if (currencyCode !== null)
-            setCurrencyCode(newCode);
-        if (newCode.length == 3) {
-            const foundCurrency = currencies.find(c => c.code == newCode)
-            if (foundCurrency !== undefined){
-                props.onCurrencyChange(foundCurrency);
-            }
-        }
-    }
-
-    const onCurrencyChangeAbort = () => {
-        setCurrencyCode(props.currency?.code ?? currencyCode);
-    }
+    const { amount, disabled, onAmountChange, currency, onCurrencyChange } = props;
+    const {
+        currencyCode,
+        handleCurrencyChangeAbort,
+        handleCurrencyTextChange
+    } = useCurrencySelectByCode(currency, onCurrencyChange);
 
     return <div className={styles.amountInput}>
         <input
             className={styles.amount}
             type="number"
-            disabled={props.disabled ?? false}
-            value={props.amount}
-            onChange={(e) => props.onAmountChange(parseFloat(e.target.value))}
+            disabled={disabled ?? false}
+            value={amount}
+            onChange={(e) => onAmountChange(parseFloat(e.target.value))}
         />
         <input
             className={styles.currency}
             type="text"
-            onChange={onCurrencyTextChange}
-            onBlur={onCurrencyChangeAbort}
+            onChange={handleCurrencyTextChange}
+            onBlur={handleCurrencyChangeAbort}
             value={currencyCode}
-            maxLength={3}/>
-    </div>
+            maxLength={3} />
+    </div>;
 }
