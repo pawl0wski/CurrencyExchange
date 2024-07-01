@@ -19,3 +19,9 @@ div.currencyInput {
 div.countryFlag {
   margin-right: 1rem;
 }
+
+@media only screen and (max-width: 560px) {
+  div.currencyInput {
+    width: 100%;
+  }
+}

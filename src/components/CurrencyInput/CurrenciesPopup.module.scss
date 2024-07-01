@@ -20,3 +20,9 @@ div.currenciesList {
   display: flex;
   flex-direction: column;
 }
+
+@media only screen and (max-width: 560px) {
+  div.currenciesPopup {
+    width: 100%;
+  }
+}

@@ -17,3 +17,11 @@ div.amountInput, div.currencyInput {
     margin-bottom: 0.25rem;
   }
 }
+
+@media only screen and (max-width: 560px) {
+  div.amountWithCurrency {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+}
