@@ -9,6 +9,7 @@ import { useExchangeSave } from "@/hooks/useExchangeSave.ts";
 import { useToAmountCalculator } from "@/hooks/useToAmountCalculator.ts";
 import { useCurrentExchangeState } from "@/hooks/useCurrentExchangeState.ts";
 import { useDispatch } from "react-redux";
+import SwapCurrenciesButton from "@/components/SwapCurrenciesButton/SwapCurrenciesButton.tsx";
 
 export default function CurrencyExchangePanel() {
     const {fromAmount, fromCurrency, toAmount, toCurrency} = useCurrentExchangeState();
@@ -26,6 +27,9 @@ export default function CurrencyExchangePanel() {
             onCurrencyChange={(currency) => dispatcher(setFromCurrency(currency))}
             onAmountChange={(amount) => dispatcher(setFromAmount(amount))}
         />
+        <div className={styles.swapCurrencies}>
+            <SwapCurrenciesButton />
+        </div>
         <h3>Waluta docelowa</h3>
         <AmountWithCurrency
             type={"to"}
