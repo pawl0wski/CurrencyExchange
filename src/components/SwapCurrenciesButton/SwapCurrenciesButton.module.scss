@@ -10,4 +10,14 @@ button.swapCurrencies {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  svg {
+    transition: 0.3s transform ease-in-out;
+  }
+
+  &:hover {
+    svg {
+      transform: rotate(180deg);
+    }
+  }
 }
