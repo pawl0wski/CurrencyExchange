@@ -3,16 +3,16 @@ import Currency from "../types/currency.ts";
 
 export interface ExchangeSliceState {
     fromAmount: number,
-    from: Currency | null,
+    fromCurrency: Currency | null,
     toAmount: number,
-    to: Currency | null,
+    toCurrency: Currency | null,
 }
 
 const initialState: ExchangeSliceState = {
     fromAmount: 0,
-    from: null,
+    fromCurrency: null,
     toAmount: 0,
-    to: null,
+    toCurrency: null,
 }
 
 export const exchangeSlice = createSlice({
@@ -23,14 +23,14 @@ export const exchangeSlice = createSlice({
             state.fromAmount = action.payload;
         },
         setFromCurrency(state, action: PayloadAction<Currency>) {
-            state.from = action.payload;
+            state.fromCurrency = action.payload;
         },
         setToCurrency(state, action: PayloadAction<Currency>) {
-            state.to = action.payload;
+            state.toCurrency = action.payload;
         },
         setToAmount(state, action: PayloadAction<number>) {
             state.toAmount = action.payload;
-        }
+        },
     }
 })
 

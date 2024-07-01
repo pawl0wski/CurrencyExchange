@@ -2,17 +2,23 @@ import styles from "./CurrencyExchangePanel.module.scss";
 import AmountWithCurrency from "../AmountWithCurrency/AmountWithCurrency.tsx";
 import { useDispatch, useSelector } from "react-redux";
 import { RootStoreState } from "../../store.ts";
-import Currency from "../../types/currency.ts";
-import { setFromAmount, setFromCurrency, setToAmount, setToCurrency } from "../../slices/exchangeSlice.ts";
+import {
+    ExchangeSliceState,
+    setFromAmount,
+    setFromCurrency,
+    setToAmount,
+    setToCurrency
+} from "../../slices/exchangeSlice.ts";
 import { useEffect } from "react";
 import { calculateAmount } from "../../utils/calculateAmount.ts";
 import CurrencyRates from "../../types/currencyRates.ts";
+import { addHistoryExchange } from "../../slices/historySlice.ts";
 
 export default function CurrencyExchangePanel() {
-    const fromAmount = useSelector<RootStoreState, number>(state => state.exchange.fromAmount)
-    const fromCurrency = useSelector<RootStoreState, Currency | null>(state => state.exchange.from)
-    const toAmount = useSelector<RootStoreState, number>(state => state.exchange.toAmount)
-    const toCurrency = useSelector<RootStoreState, Currency | null>(state => state.exchange.to)
+    const exchangeSliceState = useSelector<RootStoreState, ExchangeSliceState>(state => state.exchange)
+    const {fromCurrency, toCurrency, fromAmount, toAmount} = exchangeSliceState;
+
+    const dispatcher = useDispatch();
     const currencyRates = useSelector<RootStoreState, CurrencyRates | null>(state => state.currenciesRates.currencyRates);
 
     useEffect(() => {
@@ -22,7 +28,10 @@ export default function CurrencyExchangePanel() {
         }
     }, [fromCurrency, fromAmount, toCurrency]);
 
-    const dispatcher = useDispatch();
+
+    const onSaveButton = () => {
+        dispatcher(addHistoryExchange(exchangeSliceState));
+    }
 
     return <div className={styles.currencyExchangePanel}>
         <h3>Waluta źródłowa</h3>
@@ -42,7 +51,7 @@ export default function CurrencyExchangePanel() {
             onAmountChange={() => {}}
         />
         <hr className={styles.buttonSeparator} />
-        <button className={styles.saveButton} >
+        <button className={styles.saveButton} onClick={onSaveButton} >
             Zapisz
         </button>
     </div>;

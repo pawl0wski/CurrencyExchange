@@ -1,26 +1,15 @@
-import HistoryExchange from "../../types/historyExchange.ts";
 import HistoryPanelEntry from "./HistoryPanelEntry.tsx";
+import { useSelector } from "react-redux";
+import { RootStoreState } from "../../store.ts";
+import { ExchangeSliceState } from "../../slices/exchangeSlice.ts";
+import styles from "./HistoryPanel.module.scss";
 
 export default function HistoryPanel() {
-    const historyArray: HistoryExchange[] = [
-        {
-            fromAmount: 100,
-            from: {
-                name: "Polish Zlotys",
-                code: "PLN"
-            },
-            to: {
-                name: "Japan Jens",
-                code: "JPY"
-            },
-            toAmount: 25,
-            price: 2.15
-        }
-    ];
+    const historyExchanges = useSelector<RootStoreState, ExchangeSliceState[]>(state => state.history.exchanges);
 
-    return <div>
-        {historyArray.map(
+    return <div className={styles.historyPanel}>
+        {historyExchanges.map(
             (historyEntry, i) =>
-                <HistoryPanelEntry key={i} historyEntry={historyEntry} />)}
+                <HistoryPanelEntry key={i} historyExchange={historyEntry} />)}
     </div>;
 }

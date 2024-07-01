@@ -1,43 +1,26 @@
-import HistoryExchange from "../../types/historyExchange.ts";
 import { MdArrowRightAlt, MdDelete } from "react-icons/md";
 import styles from "./HistoryPanelEntry.module.scss";
-import CurrencyFlag from "../CurrencyFlag/CurrencyFlag.tsx";
+import { ExchangeSliceState } from "../../slices/exchangeSlice.ts";
+import HistoryPanelEntryFromTo from "./HistoryPanelEntryFromTo.tsx";
+import { useDispatch } from "react-redux";
+import { removeHistoryExchange } from "../../slices/historySlice.ts";
 
 interface HistoryPanelEntryProps {
-    historyEntry : HistoryExchange;
+    historyExchange : ExchangeSliceState;
 }
 
 export default function HistoryPanelEntry(props: HistoryPanelEntryProps) {
-    const historyEntry = props.historyEntry;
+    const {fromCurrency, toCurrency, fromAmount, toAmount} = props.historyExchange;
+    const dispatcher = useDispatch();
 
     return <div className={styles.historyPanelEntry}>
-        <div className={styles.historyPanelFrom}>
-            <div className={styles.currencyFlag}>
-                <CurrencyFlag currencyCode={historyEntry.from.code} />
-            </div>
-            <p>
-                {historyEntry.fromAmount}
-            </p>
-            <p>
-                {historyEntry.from.code}
-            </p>
-        </div>
+        <HistoryPanelEntryFromTo code={fromCurrency?.code ?? ""} amount={fromAmount} />
         <div className={styles.arrow}>
             <MdArrowRightAlt />
         </div>
-        <div className={styles.historyPanelTo}>
-            <div className={styles.currencyFlag}>
-                <CurrencyFlag currencyCode={historyEntry.to.code} />
-            </div>
-            <p>
-                {historyEntry.toAmount}
-            </p>
-            <p>
-                {historyEntry.to.code}
-            </p>
-        </div>
+        <HistoryPanelEntryFromTo code={toCurrency?.code ?? ""} amount={toAmount} />
 
-        <button>
+        <button onClick={() => dispatcher(removeHistoryExchange(props.historyExchange))}>
             <MdDelete />
         </button>
     </div>

@@ -13,25 +13,17 @@ interface AmountInputProps {
 }
 
 export default function AmountInput(props: AmountInputProps) {
-    const [currency, setCurrency] = useState<Currency>({name: "", code: "", favorite: false});
+    const [currencyCode, setCurrencyCode] = useState<string>("");
     const currencies = useSelector<RootStoreState, Currency[]>(state => state.currencies.currencies);
 
     useEffect(() => {
-        console.log("SetCurrency!")
-        if (props.currency !== null)
-            setCurrency(props.currency);
+        setCurrencyCode(props.currency?.code ?? "");
     }, [props.currency]);
 
-    const getCurrencyText = () => {
-        if (currency === null) {
-            return ""
-        }
-        return currency.code;
-    }
-    
     const onCurrencyTextChange = (e: ChangeEvent<HTMLInputElement>) => {
         const newCode = e.target.value.toUpperCase()
-        setCurrency({...currency, code: newCode});
+        if (currencyCode !== null)
+            setCurrencyCode(newCode);
         if (newCode.length == 3) {
             const foundCurrency = currencies.find(c => c.code == newCode)
             if (foundCurrency !== undefined){
@@ -41,7 +33,7 @@ export default function AmountInput(props: AmountInputProps) {
     }
 
     const onCurrencyChangeAbort = () => {
-        setCurrency(props.currency ?? currency);
+        setCurrencyCode(props.currency?.code ?? currencyCode);
     }
 
     return <div className={styles.amountInput}>
@@ -55,10 +47,9 @@ export default function AmountInput(props: AmountInputProps) {
         <input
             className={styles.currency}
             type="text"
-            disabled={props.disabled ?? false}
             onChange={onCurrencyTextChange}
             onBlur={onCurrencyChangeAbort}
-            value={getCurrencyText()}
+            value={currencyCode}
             maxLength={3}/>
     </div>
 }

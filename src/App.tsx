@@ -8,8 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateCurrencies } from "./slices/currenciesSlice.ts";
 import { RootStoreState } from "./store.ts";
 import Currency from "./types/currency.ts";
-import { getCurrenciesRateFromApi } from "./services/currenciesRateService.ts";
-import { updateCurrencyRates } from "./slices/currenciesRatesSlice.ts";
 
 function App() {
     const dispatch = useDispatch();
@@ -21,9 +19,10 @@ function App() {
                 dispatch(updateCurrencies(currencies))
             })
 
-            getCurrenciesRateFromApi().then((currenciesRate) => {
-                dispatch(updateCurrencyRates(currenciesRate))
-            })
+            // DEBUG: To reduce Quota usage
+            // getCurrenciesRateFromApi().then((currenciesRate) => {
+            //     dispatch(updateCurrencyRates(currenciesRate))
+            // })
     }, []);
 
     return (
