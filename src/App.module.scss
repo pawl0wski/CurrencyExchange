@@ -7,6 +7,10 @@ main.app {
 @media only screen and (max-width: 560px) {
   main.app {
     width: 100%;
-    padding: 0.5rem
+    padding: 0.5rem;
+
+    h1, h2 {
+      text-align: center;
+    }
   }
 }

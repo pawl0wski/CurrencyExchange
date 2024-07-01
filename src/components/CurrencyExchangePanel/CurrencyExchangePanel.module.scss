@@ -25,3 +25,11 @@ div.currencyExchangePanel {
     width: 100%;
   }
 }
+
+@media only screen and (max-width: 560px) {
+  div.currencyExchangePanel {
+    h3 {
+      text-align: center;
+    }
+  }
+}
