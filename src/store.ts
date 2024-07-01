@@ -13,7 +13,7 @@ export interface RootStoreState {
 }
 
 const store = configureStore({
-    preloadedState: loadStateFromLocalStorage(),
+    preloadedState: loadStateFromLocalStorage() ?? {},
     reducer: {
         exchangeHistories: exchangeHistoriesReducer,
         currentExchange: currentExchangeReducer,

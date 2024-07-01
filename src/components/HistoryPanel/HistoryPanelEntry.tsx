@@ -1,16 +1,15 @@
 import { MdArrowRightAlt, MdDelete } from "react-icons/md";
 import styles from "./HistoryPanelEntry.module.scss";
-import { CurrentExchangeSliceState } from "@/slices/currentExchangeSlice.ts";
 import HistoryPanelEntryFromTo from "./HistoryPanelEntryFromTo.tsx";
 import { useDispatch } from "react-redux";
-import { removeHistoryExchange } from "@/slices/exchangeHistoriesSlice.ts";
+import { HistoryExchangeState, removeHistoryExchange } from "@/slices/exchangeHistoriesSlice.ts";
 
 interface HistoryPanelEntryProps {
-    historyExchange : CurrentExchangeSliceState;
+    historyExchange : HistoryExchangeState;
 }
 
 export default function HistoryPanelEntry(props: HistoryPanelEntryProps) {
-    const {fromCurrency, toCurrency, fromAmount, toAmount} = props.historyExchange;
+    const {fromCurrency, toCurrency, fromAmount, toAmount, id} = props.historyExchange;
     const dispatcher = useDispatch();
 
     return <div className={styles.historyPanelEntry}>
@@ -19,7 +18,7 @@ export default function HistoryPanelEntry(props: HistoryPanelEntryProps) {
             <MdArrowRightAlt />
         </div>
         <HistoryPanelEntryFromTo code={toCurrency?.code ?? ""} amount={toAmount} />
-        <button onClick={() => dispatcher(removeHistoryExchange(props.historyExchange))}>
+        <button onClick={() => dispatcher(removeHistoryExchange(id))}>
             <MdDelete />
         </button>
     </div>

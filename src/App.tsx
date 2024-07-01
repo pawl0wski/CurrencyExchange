@@ -23,7 +23,7 @@ function App() {
             //     dispatch(updateCurrencyRates(currenciesRatios))
             //     dispatch(updateCurrencyRatesTimestamp(timestamp))
             // })
-    }, []);
+    }, [currencies.length, dispatch]);
 
     return (
     <main className={styles.app}>

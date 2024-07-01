@@ -7,7 +7,7 @@ export default function HistoryPanel() {
 
     return <div className={styles.historyPanel}>
         {historyExchanges.map(
-            (historyEntry, i) =>
-                <HistoryPanelEntry key={i} historyExchange={historyEntry} />)}
+            (historyEntry) =>
+                <HistoryPanelEntry key={historyEntry.id} historyExchange={historyEntry} />)}
     </div>;
 }
