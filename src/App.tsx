@@ -7,11 +7,12 @@ import { RootStoreState } from "@/store.ts";
 import Currency from "@/types/currency.ts";
 import CurrenciesRatesUpdateTime from "@/components/CurrenciesRatesUpdateTime/CurrenciesRatesUpdateTime.tsx";
 import { useCurrenciesUpdater } from "@/hooks/useCurrenciesUpdater.ts";
+import { useCurrenciesRatesUpdater } from "@/hooks/useCurrenciesRatesUpdater.ts";
 
 function App() {
     const dispatch = useDispatch();
     const currencies = useSelector<RootStoreState, Currency[]>(state => state.currencies.currencies);
-    // const updateCurrenciesRates = useCurrenciesRatesUpdater();
+    const updateCurrenciesRates = useCurrenciesRatesUpdater();
     const updateCurrencies = useCurrenciesUpdater();
 
     useEffect(() => {
@@ -19,7 +20,7 @@ function App() {
             if (currencies.length === 0)
                 await updateCurrencies();
 
-            // await updateCurrenciesRates()
+            await updateCurrenciesRates()
         };
 
         updateState().then(() => console.log("Data updated."));
