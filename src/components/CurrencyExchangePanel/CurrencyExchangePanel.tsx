@@ -10,6 +10,7 @@ import { useToAmountCalculator } from "@/hooks/useToAmountCalculator.ts";
 import { useCurrentExchangeState } from "@/hooks/useCurrentExchangeState.ts";
 import { useDispatch } from "react-redux";
 import SwapCurrenciesButton from "@/components/SwapCurrenciesButton/SwapCurrenciesButton.tsx";
+import { useMemo } from "react";
 
 export default function CurrencyExchangePanel() {
     const {fromAmount, fromCurrency, toAmount, toCurrency} = useCurrentExchangeState();
@@ -17,6 +18,9 @@ export default function CurrencyExchangePanel() {
     useToAmountCalculator(fromAmount, fromCurrency, toCurrency);
     const dispatcher = useDispatch();
 
+    const saveButtonDisabled = useMemo(() => {
+        return fromCurrency === null || toCurrency === null
+    }, [fromCurrency, toCurrency])
 
     return <div className={styles.currencyExchangePanel}>
         <h3>Waluta źródłowa</h3>
@@ -39,7 +43,7 @@ export default function CurrencyExchangePanel() {
             onAmountChange={() => {}}
         />
         <hr className={styles.buttonSeparator} />
-        <button className={styles.saveButton} onClick={handleExchangeSave} >
+        <button className={styles.saveButton} onClick={handleExchangeSave} disabled={saveButtonDisabled}>
             Zapisz
         </button>
     </div>;

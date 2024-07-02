@@ -35,4 +35,8 @@ button {
   &:hover {
     background-color: darken($primary-color, 10%);
   }
+
+  &:disabled {
+    background-color: transparentize($primary-color, 0.6);
+  }
 }

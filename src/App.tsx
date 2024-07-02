@@ -6,13 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootStoreState } from "@/store.ts";
 import Currency from "@/types/currency.ts";
 import CurrenciesRatesUpdateTime from "@/components/CurrenciesRatesUpdateTime/CurrenciesRatesUpdateTime.tsx";
-import { useCurrenciesRatesUpdater } from "@/hooks/useCurrenciesRatesUpdater.ts";
+import { useCurrenciesUpdater } from "@/hooks/useCurrenciesUpdater.ts";
 
 function App() {
     const dispatch = useDispatch();
     const currencies = useSelector<RootStoreState, Currency[]>(state => state.currencies.currencies);
     // const updateCurrenciesRates = useCurrenciesRatesUpdater();
-    const updateCurrencies = useCurrenciesRatesUpdater();
+    const updateCurrencies = useCurrenciesUpdater();
 
     useEffect(() => {
         const updateState = async () => {
