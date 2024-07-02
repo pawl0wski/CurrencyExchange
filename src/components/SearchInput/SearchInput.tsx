@@ -1,6 +1,6 @@
-import styles from './SearchInput.module.scss';
-import {MdSearch} from "react-icons/md";
-import {ChangeEventHandler} from "react";
+import styles from "./SearchInput.module.scss";
+import { MdSearch } from "react-icons/md";
+import { ChangeEventHandler } from "react";
 
 interface SearchInputProps {
     value: string,
@@ -8,17 +8,17 @@ interface SearchInputProps {
 }
 
 export default function SearchInput(props: SearchInputProps) {
-    const {value, onSearchInputChange} = props;
+    const { value, onSearchInputChange } = props;
 
     return <div>
         <div className={styles.searchBox}>
             <div className={styles.searchBoxIcon}>
-                <MdSearch/>
+                <MdSearch />
             </div>
             <input type="text"
                    value={value}
                    onChange={onSearchInputChange}
                    placeholder="Szukaj..." />
         </div>
-    </div>
+    </div>;
 }

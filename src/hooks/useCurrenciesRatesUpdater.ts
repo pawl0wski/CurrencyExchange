@@ -6,8 +6,8 @@ export function useCurrenciesRatesUpdater(): () => Promise<void> {
     const dispatch = useDispatch();
 
     return async () => {
-        const {currenciesRatios} = await getCurrenciesRateFromApi();
-        dispatch(updateCurrencyRates(currenciesRatios))
-        dispatch(updateCurrencyRatesTimestamp(Date.now()))
-    }
+        const { currenciesRatios } = await getCurrenciesRateFromApi();
+        dispatch(updateCurrencyRates(currenciesRatios));
+        dispatch(updateCurrencyRatesTimestamp(Date.now()));
+    };
 }

@@ -16,25 +16,25 @@ function App() {
 
     useEffect(() => {
         const updateState = async () => {
-            if (currencies.length === 0 )
+            if (currencies.length === 0)
                 await updateCurrencies();
 
             // await updateCurrenciesRates()
-        }
+        };
 
         updateState().then(() => console.log("Data updated."));
 
     }, [currencies.length, dispatch]);
 
     return (
-    <main className={styles.app}>
-        <h1>Przelicznik walut</h1>
-        <CurrenciesRatesUpdateTime />
-        <CurrencyExchangePanel />
-        <h2>Historia</h2>
-        <HistoryPanel />
-    </main>
-  )
+        <main className={styles.app}>
+            <h1>Przelicznik walut</h1>
+            <CurrenciesRatesUpdateTime />
+            <CurrencyExchangePanel />
+            <h2>Historia</h2>
+            <HistoryPanel />
+        </main>
+    );
 }
 
-export default App
+export default App;

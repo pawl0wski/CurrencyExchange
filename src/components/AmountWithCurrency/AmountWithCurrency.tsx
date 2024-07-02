@@ -12,7 +12,7 @@ interface AmountWithCurrencyProps {
 }
 
 export default function AmountWithCurrency(props: AmountWithCurrencyProps) {
-    const { amount, onAmountChange, onCurrencyChange, currency, type} = props;
+    const { amount, onAmountChange, onCurrencyChange, currency, type } = props;
 
     return <div className={styles.amountWithCurrency}>
         <div className={styles.amountInput}>
@@ -31,5 +31,5 @@ export default function AmountWithCurrency(props: AmountWithCurrencyProps) {
                 onCurrencyChange={onCurrencyChange}
             />
         </div>
-    </div>
+    </div>;
 }

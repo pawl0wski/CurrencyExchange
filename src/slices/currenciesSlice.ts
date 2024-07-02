@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Currency from "@/types/currency.ts";
 
 export interface CurrenciesSliceState {
-    currencies: Currency[]
+    currencies: Currency[];
 }
 
 const initialState: CurrenciesSliceState = {
     currencies: []
-}
+};
 
 export const currenciesSlice = createSlice({
     name: "currencies",
@@ -25,8 +25,8 @@ export const currenciesSlice = createSlice({
             }
         }
     }
-})
+});
 
-export const {updateCurrencies, updateFavorite} = currenciesSlice.actions;
+export const { updateCurrencies, updateFavorite } = currenciesSlice.actions;
 
 export default currenciesSlice.reducer;

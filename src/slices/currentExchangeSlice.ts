@@ -12,8 +12,8 @@ const initialState: CurrentExchangeSliceState = {
     fromAmount: 0,
     fromCurrency: null,
     toAmount: 0,
-    toCurrency: null,
-}
+    toCurrency: null
+};
 
 export const currentExchangeSlice = createSlice({
     name: "currentExchange",
@@ -40,8 +40,14 @@ export const currentExchangeSlice = createSlice({
             state.fromAmount = state.toAmount;
         }
     }
-})
+});
 
-export const {setFromAmount, setFromCurrency, setToCurrency, setToAmount, swapCurrencies} = currentExchangeSlice.actions;
+export const {
+    setFromAmount,
+    setFromCurrency,
+    setToCurrency,
+    setToAmount,
+    swapCurrencies
+} = currentExchangeSlice.actions;
 
 export default currentExchangeSlice.reducer;

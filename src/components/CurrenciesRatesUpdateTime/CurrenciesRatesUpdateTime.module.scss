@@ -1,32 +1,32 @@
 @import "@/styles/variables";
 
 div.updateTimeWithRefreshButton {
-    display: flex;
-    flex-direction: row;
-    padding: 0.5rem 0.5rem;
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem 0.5rem;
 
-    p.updateTime {
-        font-size: smaller;
-        color: gray;
-        margin: 0;
+  p.updateTime {
+    font-size: smaller;
+    color: gray;
+    margin: 0;
+  }
+
+  a.refreshButton {
+    margin-left: 1rem;
+    font-size: smaller;
+
+    color: $primary-color;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
     }
-
-    a.refreshButton {
-        margin-left: 1rem;
-        font-size: smaller;
-
-        color: $primary-color;
-        cursor: pointer;
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
+  }
 }
 
 @media only screen and (max-width: 560px) {
-    div.updateTimeWithRefreshButton {
-        flex-direction: column;
-        text-align: center;
-    }
+  div.updateTimeWithRefreshButton {
+    flex-direction: column;
+    text-align: center;
+  }
 }

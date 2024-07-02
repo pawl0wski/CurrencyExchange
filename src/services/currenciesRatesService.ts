@@ -14,14 +14,14 @@ export interface CurrenciesRatesWithTimestamp {
 }
 
 export async function getCurrenciesRateFromApi(): Promise<CurrenciesRatesWithTimestamp> {
-    const response = await fetch(withExchangeRatesApiKey("http://api.exchangeratesapi.io/v1/latest"), {method: "GET"});
+    const response = await fetch(withExchangeRatesApiKey("http://api.exchangeratesapi.io/v1/latest"), { method: "GET" });
     const responseData: CurrenciesRateApiResponse = await response.json();
 
     return createCurrenciesRatiosWithResponseData(responseData);
 }
 
 function createCurrenciesRatiosWithResponseData(data: CurrenciesRateApiResponse): CurrenciesRatesWithTimestamp {
-    const {timestamp, rates} = data;
+    const { timestamp, rates } = data;
     const currenciesRatesWithTimestamp: CurrenciesRatesWithTimestamp = {
         timestamp: timestamp * 1000,
         currenciesRatios: []

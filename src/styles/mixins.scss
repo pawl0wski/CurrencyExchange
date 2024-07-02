@@ -1,6 +1,6 @@
 @import "variables";
 
-@mixin main-block{
+@mixin main-block {
   @include main-block-radius;
 
   background-color: $primary-color-background;

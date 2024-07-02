@@ -3,13 +3,13 @@ import CurrencyRate from "@/types/currencyRate.ts";
 
 export interface CurrenciesRatesSliceState {
     currencyRates: CurrencyRate[];
-    timestamp: number | null
+    timestamp: number | null;
 }
 
 const initialState: CurrenciesRatesSliceState = {
     currencyRates: [],
-    timestamp: null,
-}
+    timestamp: null
+};
 
 export const currenciesRatesSlice = createSlice({
     name: "currenciesRates",
@@ -22,8 +22,8 @@ export const currenciesRatesSlice = createSlice({
             state.timestamp = action.payload;
         }
     }
-})
+});
 
-export const {updateCurrencyRates, updateCurrencyRatesTimestamp} = currenciesRatesSlice.actions;
+export const { updateCurrencyRates, updateCurrencyRatesTimestamp } = currenciesRatesSlice.actions;
 
 export default currenciesRatesSlice.reducer;

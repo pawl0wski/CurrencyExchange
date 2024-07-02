@@ -32,7 +32,7 @@ export default function CurrenciesPopup(props: CurrenciesPopupProps) {
 
 function filterCountriesBySearchText(searchText: string, currencies: Currency[]) {
     return currencies.filter((currency) => {
-        const {name, code} = currency;
+        const { name, code } = currency;
         const currencyNameWithCode = `${name} ${code}`.toLowerCase();
 
         return currencyNameWithCode.includes(searchText.toLowerCase());

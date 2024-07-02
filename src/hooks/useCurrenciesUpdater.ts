@@ -8,5 +8,5 @@ export function useCurrenciesUpdater(): () => Promise<void> {
     return async () => {
         const currencies = await getCurrenciesFromApi();
         dispatch(updateCurrencies(currencies));
-    }
+    };
 }

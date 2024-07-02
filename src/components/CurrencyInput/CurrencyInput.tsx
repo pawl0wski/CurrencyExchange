@@ -3,13 +3,13 @@ import styles from "./CurrencyInput.module.scss";
 import CurrenciesPopup from "./CurrenciesPopup.tsx";
 import { useState } from "react";
 import {
-    useFloating,
     autoUpdate,
-    useRole,
-    useDismiss,
+    FloatingFocusManager,
     useClick,
+    useDismiss,
+    useFloating,
     useInteractions,
-    FloatingFocusManager
+    useRole
 } from "@floating-ui/react";
 import CurrencyFlag from "@/components/CurrencyFlag/CurrencyFlag.tsx";
 import Currency from "@/types/currency.ts";

@@ -9,11 +9,11 @@ export default function SwapCurrenciesButton() {
 
     const handleSwapClick = useCallback(() => {
         dispatch(swapCurrencies());
-    }, [dispatch])
+    }, [dispatch]);
 
     return <button
         onClick={handleSwapClick}
         className={styles.swapCurrencies}>
         <MdSwapVert />
-    </button>
+    </button>;
 }
