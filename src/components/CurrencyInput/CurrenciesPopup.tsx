@@ -31,7 +31,12 @@ export default function CurrenciesPopup(props: CurrenciesPopupProps) {
 }
 
 function filterCountriesBySearchText(searchText: string, currencies: Currency[]) {
-    return currencies.filter((currency) => currency.name.toLowerCase().includes(searchText.toLowerCase()));
+    return currencies.filter((currency) => {
+        const {name, code} = currency;
+        const currencyNameWithCode = `${name} ${code}`.toLowerCase();
+
+        return currencyNameWithCode.includes(searchText.toLowerCase());
+    });
 }
 
 function sortCountriesByFavoriteAndName(currencies: Currency[]) {

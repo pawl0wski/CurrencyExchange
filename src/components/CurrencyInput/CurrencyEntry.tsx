@@ -19,7 +19,7 @@ export default function CurrencyEntry(props: CurrencyEntryProps) {
         <div className={styles.currencyFlag}>
             <CurrencyFlag currencyCode={currency.code} />
         </div>
-        <p>{currency.name}</p>
+        <p>{currency.name} ({currency.code})</p>
         <div className={`${styles.favoriteIcon} ${currency.favorite && styles.favoriteIconActive}`}
              onClick={handleFavoriteClick}>
             <MdStar />
